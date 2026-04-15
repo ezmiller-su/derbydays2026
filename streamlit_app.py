@@ -11,8 +11,6 @@ def format_currency(amount):
 st.set_page_config(page_title='Derby Days 2026')
 
 stats = pd.read_csv('https://raw.githubusercontent.com/ezmiller-su/derbydays2026/refs/heads/main/derbydays_donations_2026.csv')
-if st.sidebar.button(label='Refresh Data'):
-    stats = pd.read_csv('https://raw.githubusercontent.com/ezmiller-su/derbydays2026/refs/heads/main/derbydays_donations_2026.csv')
 
 stats['Timestamp'] = pd.to_datetime(stats['Timestamp'], format='%Y-%m-%d %H:%M:%S')
 
