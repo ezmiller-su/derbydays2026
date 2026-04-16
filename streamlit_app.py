@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import streamlit as st
 import humanize
 import time
+from zoneinfo import ZoneInfo
 
 def format_currency(amount):
     return '${:,.2f}'.format(amount)
@@ -15,7 +16,8 @@ stats = pd.read_csv(f'https://raw.githubusercontent.com/ezmiller-su/derbydays202
 
 stats['Timestamp'] = pd.to_datetime(stats['Timestamp'], format='%Y-%m-%d %H:%M:%S')
 
-now = datetime.now()
+now = datetime.now(ZoneInfo("America/New_York"))
+stats['Timestamp'] = pd.to_datetime(stats['Timestamp']).dt.tz_localize(ZoneInfo("America/New_York"))
 
 stats = stats.sort_values(by='Timestamp')
 stats = stats[stats['Timestamp'] >= pd.Timestamp('2026-04-12 16:00:00')]
