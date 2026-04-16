@@ -4,13 +4,14 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 import streamlit as st
 import humanize
+import time
 
 def format_currency(amount):
     return '${:,.2f}'.format(amount)
 
 st.set_page_config(page_title='Derby Days 2026')
 
-stats = pd.read_csv('https://raw.githubusercontent.com/ezmiller-su/derbydays2026/refs/heads/main/derbydays_donations_2026.csv')
+stats = pd.read_csv(f'https://raw.githubusercontent.com/ezmiller-su/derbydays2026/refs/heads/main/derbydays_donations_2026.csv?t={int(time.time())}')
 
 stats['Timestamp'] = pd.to_datetime(stats['Timestamp'], format='%Y-%m-%d %H:%M:%S')
 
